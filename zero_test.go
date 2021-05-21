@@ -1,7 +1,6 @@
 package zero_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/youngbloood/zero"
@@ -134,9 +133,9 @@ func TestZeroStruct(t *testing.T) {
 	z.Struct1 = v
 	z.Struct2 = &v
 
-	fmt.Println("z1 = ", z)
+	t.Log("z1 = ", z)
 	zero.Reset(*z, nil)
-	fmt.Println("z2 = ", z)
+	t.Log("z2 = ", z)
 }
 
 func TestZeroStructPtr(t *testing.T) {
@@ -149,9 +148,9 @@ func TestZeroStructPtr(t *testing.T) {
 	z.Struct1 = v
 	z.Struct2 = &v
 
-	fmt.Println("z1 = ", z)
+	t.Log("z1 = ", z)
 	zero.Reset(z, nil)
-	fmt.Println("z2 = ", z)
+	t.Log("z2 = ", z)
 }
 
 func TestZeroInt(t *testing.T) {
