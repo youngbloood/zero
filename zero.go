@@ -4,10 +4,10 @@ import (
 	"reflect"
 )
 
-type Filter map[reflect.Kind]func(reflect.Value)
+var Filter map[reflect.Kind]func(reflect.Value)
 
 // Reset . reset object to zero-value
-func Reset(v interface{}, filter Filter) {
+func Reset(v interface{}) {
 	rv := reflect.ValueOf(v)
 	switch rv.Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,
@@ -29,8 +29,8 @@ func Reset(v interface{}, filter Filter) {
 		for i := 0; i < rve.NumField(); i++ {
 			field := rve.Field(i)
 			kind := field.Kind()
-			if filter != nil {
-				if filt, ok := filter[kind]; ok {
+			if Filter != nil {
+				if filt, ok := Filter[kind]; ok {
 					filt(field)
 					continue
 				}
@@ -40,6 +40,12 @@ func Reset(v interface{}, filter Filter) {
 	default:
 		if !rve.CanAddr() {
 			return
+		}
+		if Filter != nil {
+			if filt, ok := Filter[rve.Kind()]; ok {
+				filt(rve)
+				break
+			}
 		}
 		rve.Set(reflect.Zero(rve.Type()))
 		return

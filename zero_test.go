@@ -134,7 +134,7 @@ func TestZeroStruct(t *testing.T) {
 	z.Struct2 = &v
 
 	t.Log("z1 = ", z)
-	zero.Reset(*z, nil)
+	zero.Reset(*z)
 	t.Log("z2 = ", z)
 }
 
@@ -149,118 +149,118 @@ func TestZeroStructPtr(t *testing.T) {
 	z.Struct2 = &v
 
 	t.Log("z1 = ", z)
-	zero.Reset(z, nil)
+	zero.Reset(z)
 	t.Log("z2 = ", z)
 }
 
 func TestZeroInt(t *testing.T) {
 	var Int int = 1
-	zero.Reset(Int, nil)
+	zero.Reset(Int)
 	t.Log("Int = ", Int)
-	zero.Reset(&Int, nil)
+	zero.Reset(&Int)
 	t.Log("Int = ", Int)
 
 	var Int8 int8 = 8
-	zero.Reset(Int8, nil)
+	zero.Reset(Int8)
 	t.Log("Int8 = ", Int8)
-	zero.Reset(&Int8, nil)
+	zero.Reset(&Int8)
 	t.Log("Int8 = ", Int8)
 
 	var Int16 int16 = 16
-	zero.Reset(Int16, nil)
+	zero.Reset(Int16)
 	t.Log("Int16 = ", Int16)
-	zero.Reset(&Int16, nil)
+	zero.Reset(&Int16)
 	t.Log("Int16 = ", Int16)
 
 	var Int32 int32 = 32
-	zero.Reset(Int32, nil)
+	zero.Reset(Int32)
 	t.Log("Int32 = ", Int32)
-	zero.Reset(&Int32, nil)
+	zero.Reset(&Int32)
 	t.Log("Int32 = ", Int32)
 
 	var Int64 int64 = 32
-	zero.Reset(Int64, nil)
+	zero.Reset(Int64)
 	t.Log("Int64 = ", Int64)
-	zero.Reset(&Int64, nil)
+	zero.Reset(&Int64)
 	t.Log("Int64 = ", Int64)
 
 	var Uint uint = 1
-	zero.Reset(Uint, nil)
+	zero.Reset(Uint)
 	t.Log("Uint = ", Uint)
-	zero.Reset(&Uint, nil)
+	zero.Reset(&Uint)
 	t.Log("Uint = ", Uint)
 
 	var Uint8 uint8 = 6
-	zero.Reset(Uint8, nil)
+	zero.Reset(Uint8)
 	t.Log("Uint8 = ", Uint8)
-	zero.Reset(&Uint8, nil)
+	zero.Reset(&Uint8)
 	t.Log("Uint8 = ", Uint8)
 
 	var Uint16 uint16 = 16
-	zero.Reset(Uint16, nil)
+	zero.Reset(Uint16)
 	t.Log("Uint16 = ", Uint16)
-	zero.Reset(&Uint16, nil)
+	zero.Reset(&Uint16)
 	t.Log("Uint16 = ", Uint16)
 
 	var Uint32 uint32 = 32
-	zero.Reset(Uint32, nil)
+	zero.Reset(Uint32)
 	t.Log("Uint32 = ", Uint32)
-	zero.Reset(&Uint32, nil)
+	zero.Reset(&Uint32)
 	t.Log("Uint32 = ", Uint32)
 
 	var Uint64 uint64 = 64
-	zero.Reset(Uint64, nil)
+	zero.Reset(Uint64)
 	t.Log("Uint64 = ", Uint64)
-	zero.Reset(&Uint64, nil)
+	zero.Reset(&Uint64)
 	t.Log("Uint64 = ", Uint64)
 
 }
 
 func TestZeroString(t *testing.T) {
 	var Str = "str"
-	zero.Reset(Str, nil)
+	zero.Reset(Str)
 	t.Log("Str = ", Str)
-	zero.Reset(&Str, nil)
+	zero.Reset(&Str)
 	t.Log("Str = ", Str)
 	Str2 := &Str
 	Str3 := &Str2
-	zero.Reset(&Str3, nil)
+	zero.Reset(&Str3)
 	t.Log("Str3 = ", Str3)
 }
 
 func TestZeroArray(t *testing.T) {
 	var array1 = [3]int{2, 3, 4}
-	zero.Reset(array1, nil)
+	zero.Reset(array1)
 	t.Log("array1 = ", array1)
-	zero.Reset(&array1, nil)
+	zero.Reset(&array1)
 	t.Log("array1 = ", array1)
 
 	a, b, c := 5, 6, 7
 	var array2 = [3]*int{&a, &b, &c}
-	zero.Reset(array2, nil)
+	zero.Reset(array2)
 	t.Log("array2 = ", array2)
-	zero.Reset(&array2, nil)
+	zero.Reset(&array2)
 	t.Log("array2 = ", array2)
 }
 
 func TestZeroSlice(t *testing.T) {
 	var slice1 = []int{2, 3, 4}
-	zero.Reset(slice1, nil)
+	zero.Reset(slice1)
 	t.Log("slice1 = ", slice1)
-	zero.Reset(&slice1, nil)
+	zero.Reset(&slice1)
 	t.Log("slice1 = ", slice1)
 
 	a, b, c := 5, 6, 7
 	var slice2 = []*int{&a, &b, &c}
-	zero.Reset(slice2, nil)
+	zero.Reset(slice2)
 	t.Log("slice2 = ", slice2)
-	zero.Reset(&slice2, nil)
+	zero.Reset(&slice2)
 	t.Log("slice2 = ", slice2)
 
 	var slice3 = []int{8, 9, 10}
 	slice33 := &slice3
 	slice34 := &slice33
-	zero.Reset(slice34, nil)
+	zero.Reset(slice34)
 	t.Log("slice34 = ", slice3)
 }
 
@@ -269,9 +269,9 @@ func TestZeroMap(t *testing.T) {
 		"aa": 11,
 		"bb": 22,
 	}
-	zero.Reset(map1, nil)
+	zero.Reset(map1)
 	t.Log("map1 = ", map1)
-	zero.Reset(&map1, nil)
+	zero.Reset(&map1)
 	t.Log("map1 = ", map1)
 
 }
@@ -280,9 +280,9 @@ func TestZeroFunction(t *testing.T) {
 	func1 := func(v interface{}) {
 		t.Logf("v = %+v\n", v)
 	}
-	zero.Reset(func1, nil)
+	zero.Reset(func1)
 	func1(11)
-	zero.Reset(&func1, nil)
+	zero.Reset(&func1)
 	if func1 == nil {
 		t.Log("func1 is nil")
 	} else {
@@ -292,14 +292,14 @@ func TestZeroFunction(t *testing.T) {
 
 func TestZeroComplex(t *testing.T) {
 	var cmplx64 complex64 = complex(1, 2)
-	zero.Reset(cmplx64, nil)
+	zero.Reset(cmplx64)
 	t.Log("cmplx64 = ", cmplx64)
-	zero.Reset(&cmplx64, nil)
+	zero.Reset(&cmplx64)
 	t.Log("cmplx64 = ", cmplx64)
 
 	var cmplx128 complex64 = complex(3, 4)
-	zero.Reset(cmplx128, nil)
+	zero.Reset(cmplx128)
 	t.Log("cmplx128 = ", cmplx128)
-	zero.Reset(&cmplx128, nil)
+	zero.Reset(&cmplx128)
 	t.Log("cmplx128 = ", cmplx128)
 }
